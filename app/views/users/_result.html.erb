@@ -1,0 +1,29 @@
+<div class="results-block">
+	<%= render 'shared/messages' %>
+
+	<% if @stock %>
+		<div class="card card-body bg-light p-1 ">
+			<table class="m-1 pl-1">
+				<tr>
+					<td><strong>Symbol: </strong> <%= @stock.ticker.upcase %></td>
+					<td><strong>Name: </strong> <%= @stock.name %></td>
+					<td><strong>Price: </strong> <%= @stock.last_price %></td>
+					<td>
+						<% if current_user.can_track_stock?(@stock.ticker) %>
+							<%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-xs btn-success m-2 mr-0 search-options-btn", method: :post %>
+						<% else %>			  
+						  <button class="btn btn-xs btn-dark m-2 mr-0 search-options-btn" disabled="true" >	
+						  	You are already tracking		 	
+						 	<% if !current_user.under_stock_limit? %>
+						 		10 stocks
+						 	<% else %>
+						 		this stock
+						 	<% end %>
+						  </button>
+						<% end %>
+					</td>
+				</td>
+			</table>
+		</div>
+	<% end %>
+</div> 

@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-9">
+		<h2 class="mt-3"><%= @user.full_name.titlecase %></h2>
+		<%= @user.email %><br>
+		<% if current_user.not_friend_with?(@user) %>					
+			<%= link_to 'Follow', friendships_path(friend: @user),  class: "btn btn-xs btn-success  mt-1 search-options-btn", method: :post %>
+		<% else %>
+			<%= link_to "Unfollow", friendship_path(@user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
+		<% end %>
+
+		<div class="mt-5">
+			<% if !@tracked_stocks.empty? %>
+				<%= render 'stocks/list' %>
+			<% else%>
+				<div class="">
+				  <div class="no-stocks alert alert-info">User is not tracking any stocks.</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

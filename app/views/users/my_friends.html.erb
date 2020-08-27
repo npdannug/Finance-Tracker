@@ -1,0 +1,35 @@
+<%= render 'shared/messages'%>
+<div class="row">
+	<div class="col-9">
+		<h1 class="mt-3">Friends</h1>
+		<div class="search-area">
+			<h5>Search Friends</h5>
+			<%= form_tag search_friend_path, remote:true, method: :get do %>
+				<div class="form-group ">
+					<div class="input-group ">
+					  <%= text_field_tag :friend, params[:friend], placeholder: "Name or Email", autofocus: true, minlength: 3, class: "form-control" %>
+					  <div class="input-group-append">		  
+					    <%= button_tag type: :submit, class: "btn btn-success" do %>
+							<%= fa_icon "search"  %>
+						<% end %>
+					  </div>					  
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+		<div class="">
+		  <div class="" id="results"></div>
+		</div>
+		<div class="">
+			<% if !@friends.empty? %>
+				<%= render 'friends/list', friends: @friends %>
+			<% else %>
+				<div class="alert alert-info">
+					You have no friends to display. You can search for users and follow them.
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+</div>

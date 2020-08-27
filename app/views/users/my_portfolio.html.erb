@@ -1,0 +1,39 @@
+<%= render 'shared/messages'%>
+<div class="row">
+	<div class="col-9">
+		<h1 class="mt-3">My Portfolio</h1>
+		<div class="search-area">
+			<h5>Search Stocks</h5>
+			<%= form_tag search_stock_path, remote:true, method: :get do %>
+				<div class="form-group ">
+					<div class="input-group ">
+					  	<%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control" %>
+					  <div class="input-group-append">		  
+					    <%= button_tag type: :submit, class: "btn btn-success" do %>
+							<%= fa_icon "search"  %>
+						<% end %>
+					  </div>
+					  
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="">
+		  <div class="" id="results"></div>
+		</div>
+		<div class="">
+			<% if !@tracked_stocks.empty? %>
+				<%= render 'stocks/list' %>
+			<% else%>
+				<div class="">
+				  <div class="no-stocks alert alert-info">You are not tracking any stocks. You can search for stocks and add to your portfolio.</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-3">
+		<div class="friend-list">
+			
+		</div>
+	</div>
+</div>

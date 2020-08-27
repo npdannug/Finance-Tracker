@@ -1,0 +1,29 @@
+<div class="results-block">
+	<% if !@friends.empty? %>
+		<div class="card card-body bg-light p-1 ">
+			<table class="table-hover m-1 pl-1">
+			  <% @friends.each do |friend| %>
+				<tr>
+					<td class="pl-2"><strong>Name: </strong> <%= friend.full_name.titlecase %></td>
+					<td><strong>Email: </strong> <%= friend.email %></td>
+					<td>
+						<%= link_to "View Profile", user_path(friend), class: "btn btn-xs btn-info search-options-btn ml-3" %>
+						<% if current_user.not_friend_with?(friend.id) %>					
+							<%= link_to 'Follow', friendships_path(friend: friend),  class: "btn btn-xs btn-success m-2 mr-0 search-options-btn", method: :post %>
+						<% else %>
+							<span class="btn btn-secondary btn-xs">Following</span>
+						<% end %>
+					</td>
+				</tr>
+			  <% end %>
+			</table>
+		</div>
+	<% else %>
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  No results found. Please try different keywords.
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+	<% end %>
+</div>

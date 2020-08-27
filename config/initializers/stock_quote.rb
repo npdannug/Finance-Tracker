@@ -1,0 +1,1 @@
+StockQuote::Stock.new(api_key: ENV["iex_api_key"])
