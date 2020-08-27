@@ -1,2 +1,20 @@
-<h1>Welcome</h1>
-<p><%= link_to 'Logout', destroy_user_session_path, method: :delete %></p>
+<div class="message">	
+	<div>
+		<h1 class="mb-3"><strong>Greetings!</strong></h1>
+		<span>
+			<strong>UnfrozenCions</strong> is a free to use application for tracking stocks. You may also check the stocks that your friends are tracking and add them to your portfolio. 
+			<br>
+			I hope you would enjoy using this site and please share with your friends.
+			<br><br>
+			Happy trading!
+		</span>
+		<hr>
+		<% if user_signed_in? %>
+			<%= link_to "My Portfolio", my_portfolio_path, class: "btn btn-primary"  %>
+			
+		<% else %>
+			<%= link_to "Sign In", new_user_session_path, class: "btn btn-primary"  %>
+			<%= link_to "Sign Up", new_user_registration_path, class: "btn  btn-success"  %>
+		<% end %>
+	</div>
+</div>
